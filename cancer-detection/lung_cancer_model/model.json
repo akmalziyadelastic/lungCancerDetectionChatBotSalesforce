@@ -1,0 +1,17 @@
+{
+  "format": "tf-saved-model",
+  "signatureDefKey": "serving_default",
+  "inputTensors": [
+    {
+      "name": "input",
+      "dataType": "float32",
+      "shape": [-1, 224, 224, 3]
+    }
+  ],
+  "outputTensors": [
+    {
+      "name": "output",
+      "dataType": "float32"
+    }
+  ]
+}

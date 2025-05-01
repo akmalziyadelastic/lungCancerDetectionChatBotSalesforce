@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlanner xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Simplify administrative tasks with Agent for Setup. Customize and manage your org and quickly find documentation with Agent for Setup.</description>
+    <genAiPlugins>
+        <genAiPluginName>AdminCopilot__FallbackTopic</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>AdminCopilot__ObjectManagement</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>AdminCopilot__UserAccessManagement</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>IdentityCopilot__ConnectedAppMigration</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>IdentityCopilot__ConnectedAppSummarize</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>Agent for Setup</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlanner>

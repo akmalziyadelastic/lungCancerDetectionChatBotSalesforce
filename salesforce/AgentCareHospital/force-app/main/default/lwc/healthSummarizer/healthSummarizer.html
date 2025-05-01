@@ -1,0 +1,127 @@
+<template>
+    <lightning-card title="Health Report Summarizer" icon-name="standard:health_cloud">
+        <div class="slds-p-around_medium">
+            <!-- Loading spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+            
+            <!-- Step 1: Create Health Summary -->
+            <template if:false={healthSummaryId}>
+                <div class="slds-box slds-theme_shade">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 1: Create Health Summary</h2>
+                    <lightning-input 
+                        label="Patient Name" 
+                        value={patientName} 
+                        onchange={handlePatientNameChange} 
+                        required>
+                    </lightning-input>
+                    <div class="slds-m-top_medium">
+                        <lightning-button 
+                            label="Create Health Summary" 
+                            variant="brand" 
+                            onclick={createHealthSummary}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+            
+            <!-- Steps 2-4: Upload and Manage Reports -->
+            <template if:true={healthSummaryId}>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <!-- Left Column -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- Step 2: Upload Reports -->
+                        <div class="slds-box slds-theme_shade slds-m-bottom_medium">
+                            <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 2: Upload Reports</h2>
+                            <lightning-file-upload
+                                label="Upload Health Reports"
+                                name="fileUploader"
+                                accept={acceptedFormats}
+                                record-id={healthSummaryId}
+                                onuploadfinished={handleFileUpload}
+                                multiple>
+                            </lightning-file-upload>
+                        </div>
+                        
+                        <!-- Step 3: Add Report Details -->
+                        <div class="slds-box slds-theme_shade">
+                            <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 3: Add Report Details</h2>
+                            <lightning-input 
+                                label="Report Name" 
+                                value={newReportName} 
+                                onchange={handleReportNameChange} 
+                                required>
+                            </lightning-input>
+                            <lightning-combobox
+                                label="Report Type"
+                                value={newReportType}
+                                options={reportTypeOptions}
+                                onchange={handleReportTypeChange}
+                                required>
+                            </lightning-combobox>
+                            <lightning-textarea 
+                                label="Report Content" 
+                                value={newReportContent} 
+                                onchange={handleReportContentChange} 
+                                required>
+                            </lightning-textarea>
+                            <div class="slds-m-top_medium">
+                                <lightning-button 
+                                    label="Add Report" 
+                                    variant="brand" 
+                                    onclick={createHealthReport}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- Step 4: View Reports and Generate Summary -->
+                        <div class="slds-box slds-theme_shade">
+                            <h2 class="slds-text-heading_medium slds-m-bottom_medium">Step 4: Reports & Summary</h2>
+                            
+                            <h3 class="slds-text-heading_small slds-m-bottom_small">Health Reports</h3>
+                            <template if:true={healthReports.length}>
+                                <ul class="slds-has-dividers_bottom-space">
+                                    <template for:each={healthReports} for:item="report">
+                                        <li key={report.id} class="slds-item">
+                                            <div class="slds-grid slds-grid_vertical-align-center">
+                                                <div class="slds-col slds-grow-none">
+                                                    <lightning-icon icon-name="standard:document" size="small"></lightning-icon>
+                                                </div>
+                                                <div class="slds-col slds-p-left_small">
+                                                    <div class="slds-text-heading_small">{report.name}</div>
+                                                    <div class="slds-text-body_small">{report.type} • {report.date}</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                                <div class="slds-m-top_medium">
+                                    <lightning-button 
+                                        label="Generate Summary" 
+                                        variant="success" 
+                                        onclick={generateSummary}>
+                                    </lightning-button>
+                                    <lightning-button 
+                                        label="View Health Summary" 
+                                        variant="neutral" 
+                                        onclick={viewHealthSummary}
+                                        class="slds-m-left_small">
+                                    </lightning-button>
+                                </div>
+                            </template>
+                            <template if:false={healthReports.length}>
+                                <div class="slds-text-body_small slds-text-color_weak">
+                                    No health reports added yet. Upload reports and add details to proceed.
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlanner xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>You are an AI Agent whose job is to help analyze medical data from reports, tests, and prescriptions to create concise health summaries.</description>
+    <genAiPlugins>
+        <genAiPluginName>p_16jNS000000kyM9_Health_Concern_Identification</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jNS000000kyM9_Medical_Report_Analysis</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jNS000000kyM9_Patient_Summary_Creation</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jNS000000kyM9_Prescription_Data_Extraction</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jNS000000kyM9_Test_Results_Summarization</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>Health Summary Agent</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlanner>
